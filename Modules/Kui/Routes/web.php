@@ -15,6 +15,7 @@ use Modules\Kui\Entities\Kegiatankerjasama;
 
 // use Illuminate\Routing\Route;
 use Modules\Kui\Http\Controllers\KegiatankerjasamaController;
+use Modules\Kui\Http\Controllers\VisimisiController;
 
 // Route::prefix('kui')->group(function() {
 //     Route::get('/', 'KuiController@index');
@@ -79,4 +80,10 @@ Route::prefix('kui')->group(function () {
         Route::get('/view/{id}', 'DatamouController@view');
         Route::get('/download/{id}', 'DatamouController@download');
     });
+    Route::prefix('admin/kui')->group(function () {
+        Route::get('/visimisi/create', [VisimisiController::class, 'create'])->name('kui.visimisi.create');
+        Route::post('/visimisi/store', [VisimisiController::class, 'store'])->name('kui.visimisi.store');
+        Route::get('/visimisi/edit/{id}', [VisimisiController::class, 'create'])->name('kui.visimisi.edit');
+    });
+    Route::get('/landing/{slug}', [VisiMisiController::class, 'showBySlug'])->name('kui.landing.visimisi');
 });
