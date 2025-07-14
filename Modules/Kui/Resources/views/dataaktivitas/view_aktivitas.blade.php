@@ -17,7 +17,7 @@
                     <div class="card">
                         <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                             <h4>Data Aktivitas</h4>
-                            <a href="{{ url('/aktivitas/create') }}" class="btn btn-primary">Tambah Aktivitas</a>
+                            <a href="{{ url('/kui/dataaktivitas/create') }}" class="btn btn-primary">Tambah Aktivitas</a>
                         </div>
                         <div class="card-body">
                             @if (session('success'))
@@ -46,24 +46,24 @@
                                             <tr>
                                                 <th scope="row">{{ $loop->iteration }}</th>
                                                 <td><a
-                                                        href="{{ url('/aktivitas/kerjasama/show/' . $post->nomor_mou) }}">{{ $post->nomor_mou }}</a>
+                                                        href="{{ url('/kui/dataaktivitas/kerjasama/show/' . $post->nomor_mou) }}">{{ $post->nomor_mou }}</a>
                                                 </td>
                                                 <td>{{ $post->kegiatan }}</td>
                                                 <td>{{ \Carbon\Carbon::parse($post->tanggal)->translatedFormat('l, j F Y') }}
                                                 </td>
                                                 {{-- <td>
-                                                    <a href="{{ url('/aktivitas/show/' . $post->id) }}"
+                                                    <a href="{{ url('/kui/dataaktivitas/show/' . $post->id) }}"
                                                         class="btn btn-success">Show</a>
-                                                    <a href="{{ url('/aktivitas/edit/' . $post->id) }}"
+                                                    <a href="{{ url('/kui/dataaktivitas/edit/' . $post->id) }}"
                                                         class="btn btn-info">Edit</a>
-                                                    <a href="{{ url('/aktivitas/delete/' . $post->id) }}"
+                                                    <a href="{{ url('/kui/dataaktivitas/delete/' . $post->id) }}"
                                                         class="btn btn-danger">Delete</a>
                                                 </td> --}}
                                                 <td>
                                                     <div class="btn-group btn-group-sm" role="group" aria-label="Aksi">
-                                                        <a href="{{ url('/aktivitas/show/' . $post->id) }}" class="btn btn-success">Show</a>
-                                                        <a href="{{ url('/aktivitas/edit/' . $post->id) }}" class="btn btn-info">Edit</a>
-                                                        <a href="{{ url('/aktivitas/delete/' . $post->id) }}" class="btn btn-danger">Delete</a>
+                                                        <a href="{{ url('/kui/dataaktivitas/show/' . $post->id) }}" class="btn btn-success">Show</a>
+                                                        <a href="{{ url('/kui/dataaktivitas/edit/' . $post->id) }}" class="btn btn-info">Edit</a>
+                                                        <a href="{{ url('/kui/dataaktivitas/delete/' . $post->id) }}" class="btn btn-danger">Delete</a>
                                                     </div>
                                                 </td>                                                
                                             </tr>
@@ -87,9 +87,9 @@
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script>
             $(document).ready(function() {
-                $('#prodi').select2({
+                $('#Jurusan').select2({
                     tags: true,
-                    placeholder: "Pilih Prodi",
+                    placeholder: "Pilih Jurusan",
                     // selectionCssClass: "form-control"
 
                 });

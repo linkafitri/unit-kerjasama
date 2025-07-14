@@ -76,9 +76,9 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#prodi').select2({
+        $('#jurusan').select2({
             tags: true,
-            placeholder: "Pilih Prodi",
+            placeholder: "Pilih Jurusan",
             // selectionCssClass: "form-control"
 
         });

@@ -5,7 +5,8 @@ namespace Modules\Kui\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Kui\Entities\Visimisi;
+use Illuminate\Support\Str;
+use Modules\Kui\Entities\VisiMisi;
 
 class VisimisiController extends Controller
 {
@@ -15,9 +16,10 @@ class VisimisiController extends Controller
      */
     public function index()
     {
-        // return view('kui::index');
-        $allDatavisimisi = Visimisi::all();
-        return view('kui::visimisi.view_visimisi', compact('allDatavisimisi'));
+        $data = VisiMisi::all();
+        return view('kui::admin.visimisi_view', compact('data'));
+        // $allDatavisimisi = Visimisi::all();
+        // return view('kui::visimisi.view_visimisi', compact('allDatavisimisi'));
     }
 
     /**
@@ -26,8 +28,8 @@ class VisimisiController extends Controller
      */
     public function create()
     {
-        // return view('kui::create');
-        return view('kui::visimisi.add_visimisi');
+        return view('kui::admin.visimisi_create');
+        // return view ('kui::visimisi.add_visimisi');
     }
 
     /**
@@ -37,7 +39,27 @@ class VisimisiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'namahalaman' => 'required',
+            'visi' => 'required',
+            'misi' => 'required',
+            'struktur_organisasi' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        $path = null;
+        if ($request->hasFile('struktur_organisasi')) {
+            $path = $request->file('struktur_organisasi')->store('struktur', 'public');
+        }
+
+        VisiMisi::create([
+            'namahalaman' => $request->namahalaman,
+            'slug' => Str::slug($request->namahalaman),
+            'visi' => $request->visi,
+            'misi' => $request->misi,
+            'struktur_organisasi' => $path,
+        ]);
+
+        return redirect()->back()->with('success', 'Data berhasil disimpan!');
     }
 
     /**
@@ -79,5 +101,16 @@ class VisimisiController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function showBySlug($slug)
+    {
+        $data = VisiMisi::where('slug', $slug)->firstOrFail();
+
+        if ($slug === 'struktur-organisasi') {
+            return view('kui::landing.struktur', compact('data'));
+        }
+
+        return view('kui::landing.visimisi', compact('data'));
     }
 }
