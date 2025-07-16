@@ -39,7 +39,7 @@ class MenuModulKuiTableSeeder extends Seeder
         ]);
         Menu::create([
             'modul' => 'Kui',
-            'label' => 'Data MoU',
+            'label' => 'Data File MoU',
             'url' => 'kui/datamou',
             'can' => serialize(['admin']),
             'icon' => 'fas fa-envelope',
@@ -52,7 +52,7 @@ class MenuModulKuiTableSeeder extends Seeder
             'label' => 'Kegiatan Kerjasama',
             'url' => 'kui/kegiatankerjasama',
             'can' => serialize(['admin']),
-            'icon' => 'fas fa-envelope',
+            'icon' => 'fas fa-eye-dropper',
             'urut' => 4,
             'parent_id' => 0,
             'active' => serialize(['kui/kegiatankerjasama', 'kui/kegiatankerjasama/*'])

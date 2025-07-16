@@ -9,6 +9,7 @@ use Modules\Kui\Entities\Post;
 class Kategori extends Model
 {
     use HasFactory;
+    protected $table = 'kategori';
     protected $primaryKey = 'id_kategori';
     protected $guarded = ['id_kategori'];
     public function kerjasama()

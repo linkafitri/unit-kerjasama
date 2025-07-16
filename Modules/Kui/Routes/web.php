@@ -84,6 +84,16 @@ Route::prefix('kui')->group(function () {
         Route::get('/visimisi/create', [VisimisiController::class, 'create'])->name('kui.visimisi.create');
         Route::post('/visimisi/store', [VisimisiController::class, 'store'])->name('kui.visimisi.store');
         Route::get('/visimisi/edit/{id}', [VisimisiController::class, 'create'])->name('kui.visimisi.edit');
+        Route::get('/landing/{slug}', [VisiMisiController::class, 'showBySlug'])->name('kui.landing.visimisi');
     });
-    Route::get('/landing/{slug}', [VisiMisiController::class, 'showBySlug'])->name('kui.landing.visimisi');
+    // data aktivitas
+    Route::prefix('dataaktivitas')->group(function () { 
+        Route::get('/', 'DataaktivitasController@index');
+        Route::get('/create', 'DataaktivitasController@create');
+        Route::post('/store', 'DataaktivitasController@store');
+        Route::get('/edit/{id}', 'DataaktivitasController@edit');
+        Route::put('/update/{id}', 'DataaktivitasController@update');
+        Route::delete('/delete/{id}', 'DataaktivitasController@destroy');
+        Route::get('/show/{id}', 'DataaktivitasController@show_dataaktivitas');
+    });
 });

@@ -17,6 +17,7 @@ class Kerjasama extends Model
     //     return \Modules\Kui\Database\factories\KerjasamaFactory::new();
     // }
     use HasFactory, SoftDeletes;
+    protected $table = 'kerjasama';
     protected $primaryKey = 'id_kerjasama';
     protected $guarded = ['id_kerjasama'];
 
