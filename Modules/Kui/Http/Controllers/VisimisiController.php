@@ -79,7 +79,8 @@ class VisimisiController extends Controller
      */
     public function edit($id)
     {
-        return view('kui::edit');
+        $visimisi = VisiMisi::findOrFail($id);
+        return view('kui::admin.edit_visimisi', compact('visimisi'));
     }
 
     /**
@@ -90,7 +91,29 @@ class VisimisiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'namahalaman' => 'required',
+            'visi' => 'required',
+            'misi' => 'required',
+            'struktur_organisasi' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        $visimisi = VisiMisi::findOrFail($id);
+
+        $path = $visimisi->struktur_organisasi;
+        if ($request->hasFile('struktur_organisasi')) {
+            $path = $request->file('struktur_organisasi')->store('struktur', 'public');
+        }
+
+        $visimisi->update([
+            'namahalaman' => $request->namahalaman,
+            'slug' => Str::slug($request->namahalaman),
+            'visi' => $request->visi,
+            'misi' => $request->misi,
+            'struktur_organisasi' => $path,
+        ]);
+
+        return redirect()->back()->with('success', 'Data berhasil diupdate!');
     }
 
     /**
